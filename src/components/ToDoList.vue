@@ -3,7 +3,7 @@
         <div class="container">
             <div class="box">
                 <input v-model="inputValue"  class="input" type="text">
-                <button @click="addToDoItems" class="btn">create</button>
+                <button :disabled="!inputValue" @click="addToDoItems" class="btn">create</button>
             </div>
            <ul class="list" >
                 <li v-for="(item, index) in toDoItems"  :key="index" class="list__item" >{{ item }}</li>
@@ -19,6 +19,8 @@
     const toDoItems = ref<string[]>([]);
 
     function addToDoItems(){
+        if(!inputValue.value) return
+
         toDoItems.value.push(inputValue.value)
         inputValue.value = ''
     }
@@ -27,6 +29,9 @@
 <style scoped lang="scss">
 .wrapper{
     padding: 100px 0;
+}
+button:disabled{
+    opacity: 0.7;
 }
 .container{
     max-width: 1200px;
