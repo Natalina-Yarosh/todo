@@ -2,8 +2,8 @@
     <div class="wrapper">
         <div class="container">
             <div class="box">
-                <input v-model="inputValue"  class="input" type="text">
-                <button :disabled="!inputValue" @click="addToDoItems" class="btn">create</button>
+                <input @keydown.enter="addToDoItems"  v-model="inputValue"  class="input" type="text">
+                <button  :disabled="!inputValue" @click="addToDoItems" class="btn">create</button>
             </div>
            <ul class="list" >
                 <li v-for="(item, index) in toDoItems"  :key="index" class="list__item" >{{ item }}</li>
@@ -27,6 +27,9 @@
 </script>
 
 <style scoped lang="scss">
+input, button {
+    border-radius: 5px;
+}
 .wrapper{
     padding: 100px 0;
 }
@@ -47,8 +50,8 @@ button:disabled{
 .input{
     width: 100%;
     padding: 10px;
+    outline: none;
     color: #222;
-    border-radius: 0;
     font-size: 16px;
 }
 .btn{
@@ -72,7 +75,7 @@ button:disabled{
         padding: 10px;
         font-size: 16px;
         line-height: 18px;
-        background-color: #c3c3c3;
+        background-color: #eeeeee;
     }
 }
 </style>
